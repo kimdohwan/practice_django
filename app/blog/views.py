@@ -1,7 +1,10 @@
 import os
 
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
+
+from blog.models import Post
 
 
 def post_list(request):
@@ -38,5 +41,17 @@ def post_list(request):
     # print(blog_template_file_path)
     # html = open(blog_template_file_path, 'rt').read()
 
-    html = render_to_string('blog/post_list.html')
-    return HttpResponse(html)
+    # html = render_to_string('blog/post_list.html')
+    # return HttpResponse(html)
+    posts1 = Post.objects.all()
+    context = {
+        'posts': posts1,
+    }
+    return render(request, 'blog/post_list.html', context)
+    #
+    # result = '글 목록<br>'
+    # for post in Post.objects.all():
+    #     result += '{}<br>'.format(post.title)
+    # return HttpResponse(result)
+    # posts = Post.objects.all()
+    # print(posts)

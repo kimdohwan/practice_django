@@ -11,4 +11,5 @@ urlpatterns = [
     # blog.view에 있는 post_list함수를
     # 아래 url함수의 두번째 인자로 전달(함수 호출아님)
     url(r'^$', post_list),
+    url(r'^(\d+)/', post_detail),
 ]
