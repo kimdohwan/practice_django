@@ -1,6 +1,7 @@
 import os
 
 from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 
 def post_list(request):
@@ -29,11 +30,13 @@ def post_list(request):
         :param request:
         :return:
         """
-    cur_file_path = os.path.abspath(__file__)
-    blog_dir_path = os.path.dirname(cur_file_path)
-    app_dir_path = os.path.dirname(blog_dir_path)
-    templates_dir_path = os.path.join(app_dir_path, 'templates')
-    blog_template_file_path = os.path.join(templates_dir_path, 'blog', 'post_list.html')
-    print(blog_template_file_path)
-    html = open(blog_template_file_path, 'rt').read()
+    # cur_file_path = os.path.abspath(__file__)
+    # blog_dir_path = os.path.dirname(cur_file_path)
+    # app_dir_path = os.path.dirname(blog_dir_path)
+    # templates_dir_path = os.path.join(app_dir_path, 'templates')
+    # blog_template_file_path = os.path.join(templates_dir_path, 'blog', 'post_list.html')
+    # print(blog_template_file_path)
+    # html = open(blog_template_file_path, 'rt').read()
+
+    html = render_to_string('blog/post_list.html')
     return HttpResponse(html)
