@@ -1,7 +1,7 @@
 import os
 
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 
 from blog.models import Post
@@ -43,7 +43,7 @@ def post_list(request):
 
     # html = render_to_string('blog/post_list.html')
     # return HttpResponse(html)
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-id')
     context = {
         'posts': posts,
     }
@@ -63,3 +63,20 @@ def post_detail(request, post_id):
         'post': post,
     }
     return render(request, 'blog/post_detail.html', context)
+
+def post_create(request):
+    if request.method == 'POST':
+        post = Post.objects.create(
+            author=request.user,
+            title=request.POST['title'],
+            text=request.POST['text']
+        )
+        return redirect('post-list')
+    else:
+        return render(request, 'blog/post_create.html')
+
+def post_delete(request, post_id):
+    if request.method == 'POST':
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return redirect('post-list')

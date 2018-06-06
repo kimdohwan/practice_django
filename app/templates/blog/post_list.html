@@ -6,6 +6,12 @@
         <h5 class="card-title"><a href="{% url 'post-detail' post.id%}">[{{ post.id }}] {{ post.title }}</a></h5>
         <h6 class="card-subtitle text-muted mb-3 text-right">published: {{ post.published_date }}</h6>
         <p class="card-text">{{ post.text|linebreaksbr|truncatechars:100 }}</p>
+        <div>
+            <form action="{% url 'post-delete' post.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endfor %}
