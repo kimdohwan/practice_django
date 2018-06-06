@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>복습만이 살길이다</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4"><a href="{% url 'post-list' %}">복습왕 김도환</a></h1>
+    <div class="text-right mb-2">
+        <a class="btn btn-primary" href="">글쓰기</a>
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
