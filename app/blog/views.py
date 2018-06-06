@@ -43,9 +43,9 @@ def post_list(request):
 
     # html = render_to_string('blog/post_list.html')
     # return HttpResponse(html)
-    posts1 = Post.objects.all()
+    posts = Post.objects.all()
     context = {
-        'posts': posts1,
+        'posts': posts,
     }
     return render(request, 'blog/post_list.html', context)
     #
@@ -55,3 +55,11 @@ def post_list(request):
     # return HttpResponse(result)
     # posts = Post.objects.all()
     # print(posts)
+
+
+def post_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {
+        'post': post,
+    }
+    return render(request, 'blog/post_detail.html', context)

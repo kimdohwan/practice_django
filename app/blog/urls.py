@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from blog.views import post_list
+from blog.views import post_list, post_detail
 
 urlpatterns = [
     # url의 첫번째 인자: 매치될 url 정규표현식
@@ -11,5 +11,5 @@ urlpatterns = [
     # blog.view에 있는 post_list함수를
     # 아래 url함수의 두번째 인자로 전달(함수 호출아님)
     url(r'^$', post_list),
-    url(r'^(\d+)/', post_detail),
+    url(r'^(\d+)/$', post_detail),
 ]

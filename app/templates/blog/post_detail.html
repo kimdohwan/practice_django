@@ -1,5 +1,5 @@
 {% load static %}
-<!doctype html>
+<!--<!doctype html>-->
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -10,14 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
 <body>
-    {% for post in posts %}
 	<div class="card mb-4">
 		<div class="card-body">
 			<h5 class="card-title">[{{ post.id }}] {{ post.title }}</h5>
 			<h6 class="card-subtitle text-muted mb-3 text-right">published: {{ post.published_date }}</h6>
-			<p class="card-text">{{ post.text|linebreaksbr|truncatechars:100 }}</p>
+			<p class="card-text">{{ post.text|linebreaksbr }}</p>
 		</div>
 	</div>
-    {% endfor %}
 </body>
 </html>
